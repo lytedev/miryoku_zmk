@@ -5,7 +5,6 @@ jobs:
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
-      board: '["nice_nano"]'
+      board: '["nice_nano//zmk"]'
       shield: '["corne_left","corne_right"]'
       nav: '["vi"]'
-      kconfig: '["CONFIG_ZMK_POINTING=y"]'
