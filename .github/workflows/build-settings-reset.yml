@@ -1,0 +1,27 @@
+name: 'Build Settings Reset'
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    steps:
+      - name: Checkout ZMK
+        uses: actions/checkout@v4
+        with:
+          repository: zmkfirmware/zmk
+          path: zmk
+      - name: West init
+        run: |
+          cd zmk
+          west init -l app/
+          west update
+      - name: Build settings_reset
+        run: |
+          cd zmk
+          west build -s app -b nice_nano -- -DSHIELD=settings_reset
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: settings_reset-nice_nano
+          path: zmk/build/zephyr/zmk.uf2
