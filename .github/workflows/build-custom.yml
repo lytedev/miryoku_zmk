@@ -8,3 +8,4 @@ jobs:
       board: '["nice_nano"]'
       shield: '["corne_left","corne_right"]'
       nav: '["vi"]'
+      kconfig: '["CONFIG_ZMK_POINTING=y"]'
